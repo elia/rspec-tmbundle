@@ -8,15 +8,7 @@
 	<string>#!/usr/bin/env bash
 
 . "$TM_BUNDLE_SUPPORT/lib/init-command"
-
-cat &lt;&lt;'RUBYEOF' &gt; /tmp/textmate-command-$$.rb
-
-require ENV['TM_BUNDLE_SUPPORT'] + "/lib/rspec/mate"
-RSpec::Mate::Runner.new.run_focussed STDOUT
-
-RUBYEOF
-
-${TM_RUBY:-ruby} /tmp/textmate-command-$$.rb; exit_status=$?; rm /tmp/textmate-command-$$.rb; exit $exit_status
+${TM_RUBY:-ruby} -r"${TM_BUNDLE_SUPPORT}/lib/rspec/mate" -e"RSpec::Mate::Runner.new.run_focussed STDOUT"
 </string>
 	<key>fallbackInput</key>
 	<string>line</string>

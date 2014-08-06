@@ -9,14 +9,8 @@
 
 . "$TM_BUNDLE_SUPPORT/lib/init-command"
 
-cat &lt;&lt;'RUBYEOF' &gt; /tmp/textmate-command-$$.rb
-
-require ENV['TM_BUNDLE_SUPPORT'] + "/lib/rspec/mate"
-RSpec::Mate::Runner.new.run_file STDOUT
-
-RUBYEOF
-
-${TM_RUBY:-ruby} /tmp/textmate-command-$$.rb; exit_status=$?; rm /tmp/textmate-command-$$.rb; exit $exit_status</string>
+${TM_RUBY:-ruby} -r"${TM_BUNDLE_SUPPORT}/lib/rspec/mate" -e"RSpec::Mate::Runner.new.run_file STDOUT"
+</string>
 	<key>fallbackInput</key>
 	<string>document</string>
 	<key>input</key>
